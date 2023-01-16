@@ -1,6 +1,5 @@
 import { useEffect } from 'react'
 import blogService from './services/blogs'
-import Login from './components/Login'
 import Notification from './components/Notification'
 import { useDispatch, useSelector } from 'react-redux'
 import { initialBlogs } from './reducers/blogReducer'
@@ -10,6 +9,7 @@ import Users from './components/Users'
 import { allUsers } from './reducers/usersReducer'
 import UserPage from './components/UserPage'
 import BlogView from './components/BlogView'
+import LoginSingUp from './components/LoginSignUp'
 
 import { Routes, Route, useMatch, Link } from 'react-router-dom'
 
@@ -44,7 +44,7 @@ const App = () => {
   const pageContentControls = () => {
     // show login if not logged in
     if (userAuth === null) {
-      return <Login />
+      return <LoginSingUp />
     }
   }
 

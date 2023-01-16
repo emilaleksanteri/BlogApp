@@ -1,23 +1,27 @@
 import { useDispatch } from 'react-redux'
-import { login } from '../reducers/loginReducer'
+import { createNewUser } from '../reducers/usersReducer'
 
-const Login = ({ changeView }) => {
+const SignUp = ({ changeView }) => {
   const dispatch = useDispatch()
 
   // call for login function in app
   const handleLoginForm = (event) => {
     event.preventDefault()
-    const loginCredentials = {
+    const userObject = {
       username: event.target.username.value,
+      name: event.target.name.value,
       password: event.target.password.value,
     }
 
-    dispatch(login(loginCredentials))
+    dispatch(createNewUser(userObject))
+    event.target.username.value = ''
+    event.target.name.value = ''
+    event.target.password.value = ''
   }
 
   return (
     <div className="my-10 p-4 rounded-md border-zinc-100 shadow-lg shadow-zinc-500/50 hover:shadow-green-400/50 w-96 m-auto">
-      <h2 className="text-zinc-100 mx-5 text-2xl font-bold">Log in</h2>
+      <h2 className="text-zinc-100 mx-5 text-2xl font-bold">Create User</h2>
       <form
         onSubmit={handleLoginForm}
         className="text-zinc-100 mx-5 my-8 font-medium flex flex-col"
@@ -29,6 +33,15 @@ const Login = ({ changeView }) => {
             type="text"
             name="username"
             id="username"
+          />
+        </div>
+        <div>
+          name:
+          <input
+            className="bg-zinc-900 border-2 border-zinc-600 mx-[35px] my-1"
+            type="text"
+            name="name"
+            id="name"
           />
         </div>
         <div>
@@ -44,18 +57,18 @@ const Login = ({ changeView }) => {
           id="login-btn"
           type="submit"
           className="p-1 border-2 border-green-500 rounded-md
-         w-24 my-4 bg-green-700 hover:bg-green-500 text-lg shadow-lg shadow-green-500/20 hover:shadow-green-500/50"
+           w-24 my-4 bg-green-700 hover:bg-green-500 text-lg shadow-lg shadow-green-500/20 hover:shadow-green-500/50"
         >
-          login
+          SignUp
         </button>
       </form>
       <button
         onClick={() => changeView()}
         className="text-zinc-100 hover:text-green-500"
       >
-        Sign Up
+        Login
       </button>
     </div>
   )
 }
-export default Login
+export default SignUp
